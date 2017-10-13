@@ -1,37 +1,57 @@
-# ![Assessment 2][banner]
+# Assessment 2!
 
-This repository can be forked for [**assessment 2**][a2] of [frontend 3][fe3]
-at [**@CMDA**][cmda].
+## Achtergrond
 
-## TODO
+Dit was een assessment voor Front-End 3 waarbij we een interactieve visualisatie hebben moeten maken, daarbij hebben we ook data moet cleanen. Aan de hand van de voorgaande oefeningen en de voorbeelden heb ik de assessment kunnen maken.
 
-*   [ ] [GitHub Pages](#github-pages)
-*   [ ] [Metadata](#metadata)
-*   [ ] [Issues](#issues)
-*   [ ] Replace this document in your fork with your own readme!
+## Proces
 
-## GitHub Pages
+Aan de hand van de voorgaande oefeningen, heb ik gekozen voor basic chart van `Mike Bostock's Bar Chart August 20, 2017 https://bl.ocks.org/mbostock/3885304`, deze heb ik ook in mijn assessment 1 gebruikt. Na het kiezen van een nieuwe dataset op CBS, ben ik de data gaan cleanen. Dit heb ik met de hulp gedaan van de slides van les 3. Daarnaast had ik in de `Slack groep` gezien dat meerdere mensen moeite hadden met het cleanen van hun data. Ik heb een aantal oplossingen gebruikt van de Slack groep die ik zelf heb kunnen toepassen. Voor het sorteren van de data heb ik de code van 'sort' gebruikt die in de examples staan van `@wooorm`. 
 
-Set up [GitHub Pages][pages] for this fork through the **Settings** pane.  Use
-the **Master branch** as its source.  Do not choose a Jekyll template.
 
-## Metadata
+## Aanpassingen
 
-Edit the **description** and **url** of your repository.  Click on edit above
-the green Clone or download button and fill in a correct description and use the
-`github.io` URL you just set up.
+### index.html
+* Javascript en CSS gelinked
 
-## Issues
+### index.js
+* Mike Bostock's Bar Chart August 20, 2017 (https://bl.ocks.org/mbostock/3885304)
+* Ik heb de footer verwijderd van mij dataset, met behulp van #frontend-3 channel van @deshlieee
+``` javascript
+var footer = data.indexOf('� Statistics Netherlands, Den Haag/Heerlen 12-10-2017');
+var remove = data.splice(footer);
+```
+* Aan de Y-as heb ik wat tekst toegevoegd
+``` javascript
+g.append("g")
+.attr("class", "axis axis--y")
+.call(d3.axisLeft(y).ticks(10))
+.append("text")
+.attr("transform", "rotate(-90)")
+.attr("x", 0)
+.attr("y", -60)
+.attr("fill", "black")
+.attr("dy", "0.71em")
+.attr("text-anchor", "end")
+.text("Besteedbaar inkomen in euro's x 1000");
+```
+* Kleine aanpassingen gedaan aan de 'sort' code van `@wooorm`, met voornamelijk het doel om het werkend te maken
 
-Enable issues so we can give feedback by going to the settings tab of your fork
-and checking the box next to `issues`.
+### index.css
+* Kleur toegepast, ook bij een :hover
+* Transitie in :hover
+* Lettertype aangepast aan de titel
 
-[banner]: https://cdn.rawgit.com/cmda-fe3/logo/a4b0614/banner-assessment-2.svg
+## Data
 
-[a2]: https://github.com/cmda-fe3/course-17-18/tree/master/assessment-2#description
+De dataset die ik heb gebruikt is: (http://statline.cbs.nl/StatWeb/publication/?VW=T&DM=SLNL&PA=83739NED&LA=NL). Op de linker bar staat een download knop.
 
-[fe3]: https://github.com/cmda-fe3
+Er worden twee data types gebruikt:
 
-[cmda]: https://github.com/cmda
+* `Inkomen` - weergeeft het aantal besteedbaar inkomen, op de y-as.
+* `Huishouden` - weergeeft de huishouden, op de x-as.
 
-[pages]: https://pages.github.com
+
+## Licentie
+
+GPL-3.0 © Duy-Linh Pham
